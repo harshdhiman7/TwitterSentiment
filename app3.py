@@ -25,10 +25,10 @@ def main():
     input=tfidf_model.transform([input_tweet])
     
     if st.button('Predict'):
-       # Create a feature array with the user's input
+       # Make predictions using the kNN model 
        output=loaded_model.predict(input)
-       st.write(f'The sentiment of {input_tweet} is : {output}')
-    # Make predictions using the kNN model
+       st.write(f'The predicted sentiment of is : {output[0]}')
+   
     
 
     # Display the prediction
