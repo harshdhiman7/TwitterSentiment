@@ -23,9 +23,10 @@ def main():
     input_tweet = st.text_input('Enter Tweet',
     'Great feeling to keep scoring and helping the team to move forward in the competition')
     input=tfidf_model.transform([input_tweet])
-
-    # Create a feature array with the user's input
-    output=loaded_model.predict(input)
+    
+    if st.button('Predict'):
+       # Create a feature array with the user's input
+       output=loaded_model.predict(input)
 
     # Make predictions using the kNN model
     
