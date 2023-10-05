@@ -6,47 +6,20 @@ Created on Mon Aug  7 18:18:11 2023
 @author: harshdhiman
 """
 
-import numpy as np
-import pandas as pd
 import streamlit as st
-#%matplotlib inline
-#warnings.filterwarnings('ignore')
-from sklearn.metrics import confusion_matrix, classification_report, accuracy_score
-from sklearn.neighbors import KNeighborsClassifier
-#from symspellpy import Verbosity, SymSpell
+import pickle
 from sklearn.feature_extraction.text import TfidfVectorizer
-#from nltk.corpus import stopwords
-#from nltk.stem import SnowballStemmer, WordNetLemmatizer
-#from wordcloud import WordCloud
-from sklearn.model_selection import train_test_split
+tfidf=TfidfVectorizer()
 
-df = pd.read_csv(r'/Users/harshdhiman/Documents/Codes/MD/Twitter_Data.csv')
-df.head()
+file_path=r'/Users/harshdhiman/Documents/Codes/MD/knn_model.pkl'
+file_path2=r'/Users/harshdhiman/Documents/Codes/MD/tfidf_model.pkl'
 
-df=df[:100000:]
-df.dropna(inplace=True)
-df.category.replace([-1.0,0.0,1.0],['Negative','Neutral','Positive'],inplace=True)
+with open(file_path, 'rb') as file:
+    loaded_model = pickle.load(file)
 
 
-
-#sns.countplot(df.category)
-
-X = df.clean_text
-y = df.category
-
-X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.3, random_state=42)
-
-tfidf = TfidfVectorizer()
-X_train_vect = tfidf.fit_transform(X_train)
-X_test_vect = tfidf.transform(X_test)
-
-knn = KNeighborsClassifier(n_neighbors=5)
-knn.fit(X_train_vect,y_train)
-
-knn_pred = knn.predict(X_test_vect)
-print(confusion_matrix(y_test,knn_pred))
-print(classification_report(y_test,knn_pred))
-accuracy= accuracy_score(y_test,knn_pred)
+with open(file_path2, 'rb') as file2:
+    tfidf_model = pickle.load(file2)
 
 
 def main():
@@ -56,10 +29,10 @@ def main():
     # Collect input features from the user
     input_tweet = st.text_input('Enter Tweet',
     'Great feeling to keep scoring and helping the team to move forward in the competition')
-    input=tfidf.transform([input_tweet])
+    input=tfidf_model.transform([input_tweet])
 
     # Create a feature array with the user's input
-    output=knn.predict(input)
+    output=loaded_model.predict(input)
 
     # Make predictions using the kNN model
     
@@ -69,6 +42,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-
