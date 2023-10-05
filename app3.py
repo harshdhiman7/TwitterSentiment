@@ -30,7 +30,15 @@ def main():
        st.write(f'The predicted sentiment is {output[0]}')
        st.balloons() 
    
-    
+    with open("critiano.png", "rb") as file:
+    btn = st.download_button(
+            label="Download Picture of the Day! :)",
+            data=file,
+            file_name="cristiano.png",
+            mime="image/png"
+          )
+
+
 
     # Display the prediction
     
