@@ -31,7 +31,7 @@ def main():
        st.balloons() 
    
     with open("critiano.jpeg", "rb") as file:
-    btn = st.download_button(
+         btn = st.download_button(
             label="Download Picture of the Day! :)",
             data=file,
             file_name="cristiano.jpeg",
