@@ -28,7 +28,7 @@ def main():
        # Make predictions using the kNN model 
        output=loaded_model.predict(input)
        st.write(f'The predicted sentiment is {output[0]}')
-       st.snow() 
+       st.balloons() 
    
     
 
