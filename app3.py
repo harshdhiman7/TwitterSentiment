@@ -11,15 +11,8 @@ import pickle
 from sklearn.feature_extraction.text import TfidfVectorizer
 tfidf=TfidfVectorizer()
 
-file_path=r'/Users/harshdhiman/Documents/Codes/MD/knn_model.pkl'
-file_path2=r'/Users/harshdhiman/Documents/Codes/MD/tfidf_model.pkl'
-
-with open(file_path, 'rb') as file:
-    loaded_model = pickle.load(file)
-
-
-with open(file_path2, 'rb') as file2:
-    tfidf_model = pickle.load(file2)
+loaded_model = pickle.load(open('knn_model.pkl', 'rb'))
+tfidf_model = pickle.load(open('tfidf_model.pkl', 'rb'))
 
 
 def main():
