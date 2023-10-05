@@ -27,7 +27,8 @@ def main():
     if st.button('Predict'):
        # Make predictions using the kNN model 
        output=loaded_model.predict(input)
-       st.write(f'The predicted sentiment of is {output[0]}')
+       st.write(f'The predicted sentiment is {output[0]}')
+       st.balloons() 
    
     
 
