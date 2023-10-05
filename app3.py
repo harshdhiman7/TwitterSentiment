@@ -27,12 +27,12 @@ def main():
     if st.button('Predict'):
        # Create a feature array with the user's input
        output=loaded_model.predict(input)
-
+       st.write(f'The sentiment of {input_tweet} is : {output}')
     # Make predictions using the kNN model
     
 
     # Display the prediction
-    st.write(f'The sentiment of {input_tweet} is : {output}')
+    
 
 if __name__ == '__main__':
     main()
